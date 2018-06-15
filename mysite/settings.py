@@ -31,7 +31,9 @@ ALLOWED_HOSTS = ["18.144.36.180"]
 # Application definition
 
 INSTALLED_APPS = [
+    'schedule',
     'polls.apps.PollsConfig',
+    'djangobower',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -70,6 +72,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+BOWER_COMPONENTS_ROOT = 'mysite/components/'
+
+BOWER_INSTALLED_APPS = (
+	'jquery',
+	'jquery-ui',
+	'bootstrap'
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -119,3 +128,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_FINDERS = {
+	'djangobower.finders.BowerFinder',
+}
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')

@@ -3,7 +3,14 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 
-from .models import Question, Choice
+from .models import Question, Choice, Item
+
+class ItemAdmin(admin.ModelAdmin):
+	class Media:
+		css = {
+			"cal": ("static/schedule.css",)
+		}
+		js = ("static/schedule.js",)
 
 class ChoiceInline(admin.TabularInline):
 	model = Choice
@@ -20,4 +27,6 @@ class QuestionAdmin(admin.ModelAdmin):
 	search_fields = ['question_text']	
 
 admin.site.register(Question, QuestionAdmin)
+admin.site.register(Item, ItemAdmin)
+admin.site.site_header = 'Administration stuffs'
 # Register your models here.
